@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kylebakerio/ada-water/ada-water.js"></script>
+</head>
+
+<body>
+    <a-scene fog="type: exponential; color: #3ba7ff; density: 0.001">
+        <a-asset>
+          <img id="sky" src="assets/sky.png">
+          <a-asset-entity id="laputa" src="./assets/Laputa.glb"></a-asset-entity>
+        </a-asset>
+
+        <!-- <a-water width="100" length="100" base-color="#3ba7ff" position="0 -1 0" scale="10 10 10"></a-water> -->
+        <a-entity position="0 0 0">
+            <a-box color="white"></a-box>
+            <a-entity gltf-model="#laputa" scale="300 300 300" position="181 -494 134"></a-entity>
+        </a-entity>
+
+        <a-sky material="src: #sky"></a-sky>
+        <a-entity light="type: ambient; color: #ffead2; intensity: 1"></a-entity>
+        <a-light type="directional" light="castShadow:true;" position="-8 6 -20" intensity="0.5" shadow-camera-automatic="#objects"></a-light>
+        <a-entity id="rig" position="0 0 0" rotation="0 0 0">
+            <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+            <a-entity
+          laser-controls="hand: left"
+          raycaster="objects: .clickable; far: 20; showLine: true"
+          position="-0.5 1.5 -0.5"
+        ></a-entity>
+        <a-entity
+          laser-controls="hand: right"
+          raycaster="objects: .clickable; far: 20; showLine: true"
+          position="0.5 1.5 -0.5"
+        ></a-entity>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>
